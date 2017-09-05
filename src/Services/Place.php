@@ -28,7 +28,7 @@ class Place extends Request
     public function __construct($place)
     {
         $this->attributes = $place;
-        parent::__construct(['placeid' => $this->attributes['id']]);
+        parent::__construct(['placeid' => $this->attributes['place_id']]);
     }
 
     /**
@@ -48,6 +48,7 @@ class Place extends Request
      */
     public function getDetails()
     {
+        print_r($this->getParams());
         $response = $this->get();
         $attributes = $response->result;
         if (!empty($attributes)) {
@@ -60,12 +61,27 @@ class Place extends Request
      * Get the lat lng of the place
      * @return array
      */
-    public function latlng()
+    public function latLng()
     {
         if ($this->attributes['geometry']['location']) {
             return $this->attributes['geometry']['location'];
         }
         return [];
+    }
+
+    /**
+     * Lat Lng String
+     *
+     * @return bool|string
+     */
+    public function latLngStr()
+    {
+        $addr = false;
+        $latlng = $this->latLng();
+        if (isset($latlng['lat']) && isset($latlng['lng'])) {
+            $addr = $latlng['lat'] . "," . $latlng['lng'];
+        }
+        return $addr;
     }
 
     /**
@@ -79,6 +95,14 @@ class Place extends Request
             return $this->attributes['vicinity'];
         }
         return false;
+    }
+
+    /**
+     * Get Phone Number
+     */
+    public function phone()
+    {
+        return isset($this->attributes['international_phone_number']) ? $this->attributes['international_phone_number'] : false;
     }
 
     /**
