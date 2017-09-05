@@ -11,6 +11,11 @@ use Illuminate\Database\Eloquent\Collection;
 class Place extends Request
 {
     /**
+     * Current or Center place
+     * @var
+     */
+    public static $centerPlace;
+    /**
      * @var array
      */
     protected $attributes;
@@ -126,6 +131,40 @@ class Place extends Request
         }
         return new Collection($retArr);
 
+    }
+
+    /**
+     * @return Collection
+     */
+    public function reviews()
+    {
+        $retArr = isset($this->attributes['reviews']) ? isset($this->attributes['reviews']) : [];
+        return new Collection($retArr);
+    }
+
+    /**
+     * @param string $place
+     * @return Collection
+     * @throws \Exception
+     */
+    public function distance($place = '')
+    {
+        $placeStr = '';
+        if ($place instanceof Place) {
+            $placeStr = $place->latLngStr();
+        } elseif (!empty(static::$centerPlace)) {
+            if (static::$centerPlace instanceof Place) {
+                $placeStr = static::$centerPlace->latLngStr();
+            } elseif (is_array(static::$centerPlace) && isset(static::$centerPlace['lat']) && static::$centerPlace['lng']) {
+                $placeStr = static::$centerPlace['lat'] . ',' . static::$centerPlace['lng'];
+            } else {
+                $placeStr = static::$centerPlace;
+            }
+        } else {
+            throw new \Exception('Either $place params are required or set static::$centerPlace in Global scope');
+        }
+        $distanceMatrix = new DistanceMatrix(['origins' => $placeStr, 'destinations' => $this->latLngStr()]);
+        return $distanceMatrix->calculate();
     }
 
 }
