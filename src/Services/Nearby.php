@@ -2,26 +2,38 @@
 
 namespace GooglePlace\Services;
 
+use GooglePlace\Helpers\PlaceRequest;
 use GooglePlace\Response;
 use GooglePlace\Request;
 
 class Nearby extends Request
 {
-    protected $params = [];
+    use PlaceRequest;
+
+    /**
+     * @var array
+     */
     protected $validParams = [
         'location', 'radius', 'type', 'rankby', 'keyword', 'language', 'minprice', 'maxprice', 'name', 'opennow', 'pagetoken'
     ];
-    protected $required_params = ['location', 'radius', 'rankby'];
+
+    /**
+     * @var string
+     */
     protected $api_endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
-    protected $defaultRadius = 15000;
+
+    /**
+     * Default Radius if rankby is not specified. 15km
+     * @var int
+     */
+    public static $defaultRadius = 15000;
 
     public function __construct(array $params)
     {
         if (!isset($params['radius']) && !isset($params['rankby'])) {
-            $params['radius'] = $this->defaultRadius;
+            $params['radius'] = static::$defaultRadius;
         }
         parent::__construct($params);
-
     }
 
 

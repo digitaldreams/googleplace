@@ -35,7 +35,6 @@ class Request
 
     /**
      * Request constructor.
-     * @param string $api_endpoint
      * @param array $params
      */
     public function __construct($params = [])
@@ -71,7 +70,6 @@ class Request
     public function get()
     {
         $this->insertApiKey();
-
         $response = $this->client->get($this->api_endpoint, ['query' => $this->params]);
         return $this->response = new Response($response);
     }
@@ -97,6 +95,11 @@ class Request
         return $this->response = new Response($response);
     }
 
+    public function response()
+    {
+        return $this->response;
+    }
+
     /**
      * @return bool
      */
@@ -116,4 +119,40 @@ class Request
     {
         return $this->params;
     }
+
+    /**
+     * Set Param
+     *
+     * @param $name
+     * @param $value
+     */
+    public function __set($name, $value)
+    {
+        if (array_search($name, $this->validParams) !== false) {
+            $this->params[$name] = $value;
+        }
+    }
+
+    /**
+     * Get Param
+     *
+     * @param $name
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        return isset($this->params[$name]) ? $this->params[$name] : false;
+    }
+
+    /**
+     * Check whether has params
+     * @param $name
+     * @return bool
+     */
+    public function hasParam($name)
+    {
+        return isset($this->params[$name]);
+    }
+
+
 }

@@ -10,8 +10,15 @@ class Response
      * @var GuzzleResponse
      */
     public $response;
+    /**
+     * @var
+     */
     public $body;
 
+    /**
+     * Response constructor.
+     * @param GuzzleResponse $response
+     */
     public function __construct(GuzzleResponse $response)
     {
         $this->response = $response;
@@ -21,6 +28,11 @@ class Response
 
     }
 
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
     public function __call($name, $arguments)
     {
         if (is_object($this->response) && method_exists($this->response, $name)) {
@@ -37,6 +49,7 @@ class Response
         if (is_array($this->body) && isset($this->body[$name])) {
             return $this->body[$name];
         }
+        return false;
     }
 
 
