@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 /**
  * @author Tuhin Bepari <digitaldreams40@gmail.com>
+ * See docs
+ * https://developers.google.com/places/web-service/details
  */
 class Place extends Request
 {
@@ -165,6 +167,16 @@ class Place extends Request
         }
         $distanceMatrix = new DistanceMatrix(['origins' => $placeStr, 'destinations' => $this->latLngStr()]);
         return $distanceMatrix->calculate();
+    }
+
+    public function timezone()
+    {
+        return (new Timezone(['location' => $this->latLngStr()]))->get();
+    }
+
+    public function elevation()
+    {
+        return (new Elevation(['locations' => $this->latLngStr()]))->get();
     }
 
 }

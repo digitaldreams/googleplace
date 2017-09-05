@@ -5,6 +5,8 @@ use GooglePlace\Request;
 
 /**
  * @author Tuhin Bepari <digitaldreams40@gmail.com>
+ * see Docs
+ * https://developers.google.com/places/web-service/photos
  */
 class PlacePhoto
 {

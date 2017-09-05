@@ -5,6 +5,12 @@ namespace GooglePlace\Services;
 use GooglePlace\Helpers\PlaceRequest;
 use GooglePlace\Request;
 
+/**
+ * Class TextSearch
+ * @package GooglePlace\Services
+ * see Docs
+ * https://developers.google.com/places/web-service/search
+ */
 class TextSearch extends Request
 {
     use PlaceRequest;

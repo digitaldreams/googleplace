@@ -2,7 +2,12 @@
 
 namespace GooglePlace\Helpers;
 
-
+/**
+ * Class DistanceMatrixElement
+ * @package GooglePlace\Helpers
+ * See docs
+ * https://developers.google.com/maps/documentation/distance-matrix/start
+ */
 class DistanceMatrixElement
 {
     protected $origin;

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 /**
  * @author Tuhin Bepari <digitaldreams40@gmail.com>
+ * See docs
+ * https://developers.google.com/maps/documentation/distance-matrix/start
  */
 class DistanceMatrix extends Request
 {

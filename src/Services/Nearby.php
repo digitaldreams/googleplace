@@ -6,6 +6,12 @@ use GooglePlace\Helpers\PlaceRequest;
 use GooglePlace\Response;
 use GooglePlace\Request;
 
+/**
+ * Class Nearby
+ * @package GooglePlace\Services
+ * see Docs
+ * https://developers.google.com/places/web-service/search
+ */
 class Nearby extends Request
 {
     use PlaceRequest;
