@@ -2,7 +2,7 @@
 namespace GooglePlace\Helpers;
 
 use GooglePlace\Services\Place;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 trait PlaceRequest
 {

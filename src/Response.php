@@ -2,7 +2,7 @@
 namespace GooglePlace;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class Response
 {

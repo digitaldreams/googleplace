@@ -3,7 +3,7 @@ namespace GooglePlace\Services;
 
 use GooglePlace\Helpers\PlacePhoto;
 use GooglePlace\Request;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * @author Tuhin Bepari <digitaldreams40@gmail.com>

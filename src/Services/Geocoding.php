@@ -3,7 +3,7 @@ namespace GooglePlace\Services;
 
 namespace GooglePlace\Services;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use GooglePlace\Request;
 
 /**

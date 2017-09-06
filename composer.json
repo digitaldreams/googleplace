@@ -1,0 +1,16 @@
+{
+    "name": "digitaldream/googleplace",
+    "description": "Google Places API library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tuhin",
+            "email": "digitaldreams40@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "tightenco/collect": "dev-master"
+    }
+}
