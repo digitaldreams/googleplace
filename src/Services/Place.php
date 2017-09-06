@@ -32,10 +32,21 @@ class Place extends Request
      */
     protected $api_endpoint = 'https://maps.googleapis.com/maps/api/place/details/json';
 
-    public function __construct($place)
+    /**
+     * Place constructor.
+     * @param array $place
+     */
+
+    public function __construct($place = [])
     {
         $this->attributes = $place;
-        parent::__construct(['placeid' => $this->attributes['place_id']]);
+        $params = [];
+        if (isset($place['placeid'])) {
+            $params['placeid'] = $place['placeid'];
+        } elseif (isset($place['place_id'])) {
+            $params['placeid'] = $place['place_id'];
+        }
+        parent::__construct($params);
     }
 
     /**
@@ -51,12 +62,13 @@ class Place extends Request
     }
 
     /**
+     * Override Parent get method so we can assign attributes from response
+     *
      * @return \GooglePlace\Response
      */
-    public function getDetails()
+    public function get()
     {
-        print_r($this->getParams());
-        $response = $this->get();
+        $response = parent::get();
         $attributes = $response->result;
         if (!empty($attributes)) {
             $this->attributes = $attributes;
@@ -166,17 +178,39 @@ class Place extends Request
             throw new \Exception('Either $place params are required or set static::$centerPlace in Global scope');
         }
         $distanceMatrix = new DistanceMatrix(['origins' => $placeStr, 'destinations' => $this->latLngStr()]);
-        return $distanceMatrix->calculate();
+        $result = $distanceMatrix->calculate();
+        return $result->first();
     }
 
-    public function timezone()
+    /**
+     * Get timezone of a place
+     *
+     * @param bool $object
+     * @return \GooglePlace\Response
+     */
+    public function timezone($object = false)
     {
-        return (new Timezone(['location' => $this->latLngStr()]))->get();
+        $timezone = new Timezone(['location' => $this->latLngStr()]);
+        $response = $timezone->get();
+        return !empty($object) ? $response : $response->timeZoneId;
     }
 
-    public function elevation()
+    /**
+     * Return Elevation in Meter
+     *
+     * Elevation is height of a place from sea level
+     *
+     * @param bool $object
+     * @return bool|\GooglePlace\Response
+     */
+    public function elevation($object = false)
     {
-        return (new Elevation(['locations' => $this->latLngStr()]))->get();
+        $elevation = new Elevation(['locations' => $this->latLngStr()]);
+        $response = $elevation->get();
+        $results = $response->results;
+        $firstResult = isset($results[0]) ? $results[0] : [];
+        $elevationStr = isset($firstResult['elevation']) ? round($firstResult['elevation'], 2) : false;
+        return !empty($object) ? $response : $elevationStr;
     }
 
 }
