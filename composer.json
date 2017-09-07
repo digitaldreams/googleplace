@@ -8,6 +8,11 @@
             "email": "digitaldreams40@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "GooglePlace\\": "src/"
+        }
+    },
     "minimum-stability": "stable",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
