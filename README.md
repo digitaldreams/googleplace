@@ -2,6 +2,12 @@
 Location aware web application uses google-places-api([Place Search](http://github.com), [Place Details](https://developers.google.com/places/web-service/details), [Geocoding](https://developers.google.com/maps/documentation/geocoding/start) , [Distance Matrix](https://developers.google.com/maps/documentation/distance-matrix/start), [Timezone](https://developers.google.com/maps/documentation/timezone/intro), [Elevation](https://developers.google.com/maps/documentation/elevation/start)
 ) a lot. They are not linked to each other also its hard to find a easy and time saving php libraray to work with these api. These libraray will need less knowldege about google api and give you flavour of OOP.
 ### Setting
+Add this line on your composer.json
+```javascript
+"require":{
+    "digitaldream/googleplace":"1.*"
+}
+```
 You need to set your google api keys on top of your page. Like below
 ```php
    \GooglePlace\Request::$api_key = 'YOUR_GOOGLE_PLACES_API_KEY';
