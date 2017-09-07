@@ -8,9 +8,9 @@
             "email": "digitaldreams40@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "tightenco/collect": "dev-master"
+        "tightenco/collect": "^5.4"
     }
 }

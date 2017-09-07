@@ -3,26 +3,44 @@ namespace GooglePlace;
 
 use GuzzleHttp\Client;
 
+/**
+ * Class Request
+ *
+ * Parent of all Serivce Class. Calling to Google API are done here.
+ *
+ * @package GooglePlace
+ */
 class Request
 {
+    /**
+     * GOOGLE places api key
+     *
+     * @var
+     */
     public static $api_key;
 
     /**
+     * API endpoint of the service
      * @var
      */
     protected $api_endpoint;
 
     /**
+     * Parameter to be passed
+     *
      * @var array
      */
     protected $params;
 
     /**
+     * Response get from google
+     *
      * @var Response
      */
     protected $response;
 
     /**
+     * Filter which params are valid
      * @var array
      */
     protected $validParams = [];
@@ -31,6 +49,10 @@ class Request
      */
     protected $required_params = [];
 
+    /**
+     * Guzzle Http Client to send request to google
+     * @var Client
+     */
     protected $client;
 
     /**
@@ -65,6 +87,8 @@ class Request
     }
 
     /**
+     * Sent request via GET method
+     *
      * @return \GooglePlace\Response
      */
     public function get()
@@ -75,6 +99,7 @@ class Request
     }
 
     /**
+     * send Request via POST method
      * @return \GooglePlace\Response
      */
     public function post()
@@ -95,12 +120,19 @@ class Request
         return $this->response = new Response($response);
     }
 
+    /**
+     * Get Response object
+     *
+     * @return Response
+     */
     public function response()
     {
         return $this->response;
     }
 
     /**
+     * Final check before send request that API key is set if not then set it
+     *
      * @return bool
      */
     private function insertApiKey()
@@ -113,6 +145,8 @@ class Request
     }
 
     /**
+     * Get the parameters its currently using
+     *
      * @return array
      */
     public function getParams()
@@ -121,7 +155,7 @@ class Request
     }
 
     /**
-     * Set Param
+     * Set a Parameter
      *
      * @param $name
      * @param $value
@@ -134,7 +168,7 @@ class Request
     }
 
     /**
-     * Get Param
+     * Get  a Parameter
      *
      * @param $name
      * @return mixed
@@ -145,7 +179,7 @@ class Request
     }
 
     /**
-     * Check whether has params
+     * Check whether has parameter
      * @param $name
      * @return bool
      */

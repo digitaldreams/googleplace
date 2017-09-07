@@ -4,6 +4,11 @@ namespace GooglePlace\Helpers;
 use GooglePlace\Services\Place;
 use Illuminate\Support\Collection;
 
+/**
+ * Class PlaceRequest
+ * Nearby and TextSearch Class have some common features so to avoid duplicate code we wrote a this trait and used there
+ * @package GooglePlace\Helpers
+ */
 trait PlaceRequest
 {
     /**

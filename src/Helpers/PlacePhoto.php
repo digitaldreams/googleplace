@@ -5,6 +5,9 @@ use GooglePlace\Request;
 
 /**
  * @author Tuhin Bepari <digitaldreams40@gmail.com>
+ *
+ * One place have multiple photos each of them are wrapped in This class you dev can easily access photo info
+ * 
  * see Docs
  * https://developers.google.com/places/web-service/photos
  */

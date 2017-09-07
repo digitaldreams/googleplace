@@ -7,6 +7,9 @@ use Illuminate\Support\Collection;
 
 /**
  * @author Tuhin Bepari <digitaldreams40@gmail.com>
+ *
+ * Most frequently used Class. A single Place which contains details about that place like phone,address, photos and more
+ * 
  * See docs
  * https://developers.google.com/places/web-service/details
  */

@@ -33,6 +33,10 @@ class TextSearch extends Request
      */
     public static $defaultRadius = 15000;
 
+    /**
+     * TextSearch constructor.
+     * @param array $params
+     */
     public function __construct(array $params)
     {
         if (!isset($params['radius']) && isset($params['location'])) {

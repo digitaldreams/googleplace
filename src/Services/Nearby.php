@@ -9,6 +9,9 @@ use GooglePlace\Request;
 /**
  * Class Nearby
  * @package GooglePlace\Services
+ *
+ * Search Places near to a specific location. For example Bank in New York
+ *
  * see Docs
  * https://developers.google.com/places/web-service/search
  */
@@ -34,6 +37,10 @@ class Nearby extends Request
      */
     public static $defaultRadius = 15000;
 
+    /**
+     * Nearby constructor.
+     * @param array $params
+     */
     public function __construct(array $params)
     {
         if (!isset($params['radius']) && !isset($params['rankby'])) {

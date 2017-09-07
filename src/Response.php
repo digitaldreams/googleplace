@@ -4,13 +4,22 @@ namespace GooglePlace;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Support\Collection;
 
+/**
+ * Class Response
+ *
+ * All the response from google are handled from this Class.
+ *
+ * @package GooglePlace
+ */
 class Response
 {
     /**
      * @var GuzzleResponse
      */
     public $response;
+
     /**
+     * Response body. Usually contains data based on params passed
      * @var
      */
     public $body;
