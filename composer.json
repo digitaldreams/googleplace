@@ -19,5 +19,5 @@
     },
     "suggest":{
     "tightenco/collect": "Must be included if using outside laravel"
-    },
+    }
 }
