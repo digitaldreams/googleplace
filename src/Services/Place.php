@@ -105,6 +105,94 @@ class Place extends Request
         }
         return $addr;
     }
+    /**
+     * @return mixed
+     */
+    public function streetNumber()
+    {
+        return $this->findAddressType('street_number');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function route()
+    {
+        return $this->findAddressType('route');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function locality()
+    {
+        return $this->findAddressType('locality');
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function state()
+    {
+        return $this->findAddressType('administrative_area_level_1');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function country()
+    {
+        return $this->findAddressType('country',false);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function postalCode()
+    {
+        return $this->findAddressType('postal_code');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function phone()
+    {
+        return isset($this->attributes['international_phone_number']) ? $this->attributes['international_phone_number'] : null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function openingHours()
+    {
+        return isset($this->attributes['opening_hours']['weekday_text']) ? $this->attributes['opening_hours']['weekday_text'] : [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function url()
+    {
+        return isset($this->attributes['url']) ? $this->attributes['url'] : false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function website()
+    {
+        return isset($this->attributes['website']) ? $this->attributes['website'] : false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function utcOffset()
+    {
+        return isset($this->attributes['utc_offset']) ? $this->attributes['utc_offset'] : false;
+    }
 
     /**
      * @return bool|mixed
@@ -120,11 +208,19 @@ class Place extends Request
     }
 
     /**
-     * Get Phone Number
+     * @param $type
+     * @param bool $shortName
+     * @return bool
      */
-    public function phone()
+    protected function findAddressType($type, $shortName = true)
     {
-        return isset($this->attributes['international_phone_number']) ? $this->attributes['international_phone_number'] : false;
+        $addressComponents = isset($this->attributes['address_components']) ? $this->attributes['address_components'] : [];
+        foreach ($addressComponents as $address) {
+            if (in_array($type, $address['types'])) {
+                return $shortName === true ? $address['short_name'] : $address['long_name'];
+            }
+        }
+        return null;
     }
 
     /**
