@@ -25,11 +25,13 @@ class Nearby extends Request
     protected $validParams = [
         'location', 'radius', 'type', 'rankby', 'keyword', 'language', 'minprice', 'maxprice', 'name', 'opennow', 'pagetoken'
     ];
-
+    protected $default = [
+        'radius' => 40233,
+    ];
     /**
      * @var string
      */
-    protected $api_endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
+    protected $api_endpoint = 'place/nearbysearch/json';
 
     /**
      * Default Radius if rankby is not specified. 15km

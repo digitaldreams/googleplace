@@ -33,8 +33,13 @@ class Place extends Request
     /**
      * @var string
      */
-    protected $api_endpoint = 'https://maps.googleapis.com/maps/api/place/details/json';
+    protected $api_endpoint = 'place/details/json';
 
+    /**
+     * Connection timeout in seconds
+     * @var int
+     */
+    protected $connect_timeout = 10;
     /**
      * Place constructor.
      * @param array $place

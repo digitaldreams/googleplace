@@ -20,7 +20,7 @@ class Geocoding extends Request
     /*
      * API endpoint
      */
-    protected $api_endpoint = 'https://maps.googleapis.com/maps/api/geocode/json';
+    protected $api_endpoint = 'geocode/json';
 
     /**
      * @var array

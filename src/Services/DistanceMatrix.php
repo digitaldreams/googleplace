@@ -20,7 +20,7 @@ class DistanceMatrix extends Request
      *
      * @var string
      */
-    protected $api_endpoint = 'https://maps.googleapis.com/maps/api/distancematrix/json';
+    protected $api_endpoint = 'distancematrix/json';
 
     /**
      * See Documentation

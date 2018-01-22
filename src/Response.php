@@ -1,4 +1,5 @@
 <?php
+
 namespace GooglePlace;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
@@ -59,6 +60,14 @@ class Response
             return $this->body[$name];
         }
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuccess()
+    {
+        return $this->response->getStatusCode() === 200;
     }
 
 

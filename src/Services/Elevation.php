@@ -15,7 +15,7 @@ class Elevation extends Request
      * API endpoint
      * @var string
      */
-    protected $api_endpoint = 'https://maps.googleapis.com/maps/api/elevation/json';
+    protected $api_endpoint = 'elevation/json';
 
     /**
      * @var array

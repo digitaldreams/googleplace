@@ -20,6 +20,11 @@ class Request
     public static $api_key;
 
     /**
+     * Base url of api
+     * @var string
+     */
+    protected $base_url = 'https://maps.googleapis.com/maps/api/';
+    /**
      * API endpoint of the service
      * @var
      */
@@ -50,10 +55,22 @@ class Request
     protected $required_params = [];
 
     /**
+     * Default Params value. Only used when this params is absent on params array.
+     * @var array
+     */
+    protected $default = [];
+
+    /**
+     * @var array
+     */
+    protected $errors = [];
+    /**
      * Guzzle Http Client to send request to google
      * @var Client
      */
     protected $client;
+
+    protected $connect_timeout = 0;
 
     /**
      * Request constructor.
@@ -64,7 +81,9 @@ class Request
         if (!empty($params)) {
             $this->params = $this->validateParams($params);
         }
+
         $this->client = new Client();
+
     }
 
     /**
@@ -87,6 +106,14 @@ class Request
     }
 
     /**
+     * @return string
+     */
+    protected function makeUrl()
+    {
+        return $this->base_url . trim($this->api_endpoint, "/");
+    }
+
+    /**
      * Sent request via GET method
      *
      * @return \GooglePlace\Response
@@ -94,7 +121,8 @@ class Request
     public function get()
     {
         $this->insertApiKey();
-        $response = $this->client->get($this->api_endpoint, ['query' => $this->params]);
+        $this->setDefault();
+        $response = $this->client->get($this->makeUrl(), ['query' => $this->params, 'connect_timeout' => $this->connect_timeout]);
         return $this->response = new Response($response);
     }
 
@@ -105,17 +133,20 @@ class Request
     public function post()
     {
         $this->insertApiKey();
-        $response = $this->client->get($this->api_endpoint, ['form_params' => $this->params]);
+        $this->setDefault();
+        $response = $this->client->get($this->makeUrl(), ['form_params' => $this->params, 'connect_timeout' => $this->connect_timeout]);
         return $this->response = new Response($response);
     }
 
     /**
      * @param $method
+     * @param $params
      * @return \GooglePlace\Response
      */
     public function call($method, $params)
     {
         $this->insertApiKey();
+        $this->setDefault();
         $response = $this->client->{$method}($this->api_endpoint, $params);
         return $this->response = new Response($response);
     }
@@ -135,7 +166,7 @@ class Request
      *
      * @return bool
      */
-    private function insertApiKey()
+    protected function insertApiKey()
     {
         if (!isset($this->params['key'])) {
             $this->params['key'] = static::$api_key;
@@ -186,6 +217,16 @@ class Request
     public function hasParam($name)
     {
         return isset($this->params[$name]);
+    }
+
+    protected function setDefault()
+    {
+        if (!empty($this->default)) {
+            $remaining = array_diff_key($this->default, $this->params);
+            $this->params = array_merge($this->params, $remaining);
+            return true;
+        }
+        return false;
     }
 
 

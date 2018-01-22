@@ -22,16 +22,21 @@ class TextSearch extends Request
         'query', 'location', 'radius', 'type', 'minprice', 'maxprice', 'opennow', 'pagetoken'
     ];
 
+    protected $default = [
+        'radius' => 40233,
+    ];
     /**
      * @var string
      */
-    protected $api_endpoint = 'https://maps.googleapis.com/maps/api/place/textsearch/json';
+    protected $api_endpoint = 'place/textsearch/json';
 
     /**
      * Default Radius if rankby is not specified. 15km
      * @var int
      */
     public static $defaultRadius = 15000;
+
+    protected $offset = 0;
 
     /**
      * TextSearch constructor.

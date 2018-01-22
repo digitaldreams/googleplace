@@ -18,7 +18,7 @@ class Timezone extends Request
      *
      * @var string
      */
-    protected $api_endpoint = 'https://maps.googleapis.com/maps/api/timezone/json';
+    protected $api_endpoint = 'timezone/json';
 
     /**
      * @var array
