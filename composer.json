@@ -15,7 +15,7 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3|^7.0"
     },
     "suggest":{
     "tightenco/collect": "Must be included if using outside laravel"
