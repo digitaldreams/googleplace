@@ -41,17 +41,17 @@ Text Search Service is a web service that returns information about a set of pla
 A Place Details request returns more comprehensive information about the indicated place such as its complete address, phone number, user rating and reviews. You need to pass place_id or a reference from a Place Search
 
 ```php
-$place=new \GooglePlace\Service\Place([
+$place=new \GooglePlace\Services\Place([
  'placeid'=>'any place id'
 ]);
 $place->get();
 echo $place->address();
 echo $place->phone();
 print_r($place->photos()); // returns Collection each contains a GooglePlace\Helpers\PlacePhoto object
-print_r($place->reviews()) // return Collection
+print_r($place->reviews()); // return Collection
 print_r($place->timezone(true)); // return  Timezone API response
-print_r($place->distance($place2)) // return Distance Matrix API response
-print_r($place->elevation()) // return Elevation API response
+print_r($place->distance($place2)); // return Distance Matrix API response
+print_r($place->elevation()); // return Elevation API response
 ```
 ### Geocoding
 You can get places by a place name or latitude and longitude.
