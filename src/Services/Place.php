@@ -256,7 +256,7 @@ class Place extends Request
      */
     public function reviews()
     {
-        $retArr = isset($this->attributes['reviews']) ? isset($this->attributes['reviews']) : [];
+        $retArr = isset($this->attributes['reviews']) ? $this->attributes['reviews'] : [];
         return new Collection($retArr);
     }
 
@@ -316,5 +316,4 @@ class Place extends Request
         $elevationStr = isset($firstResult['elevation']) ? round($firstResult['elevation'], 2) : false;
         return !empty($object) ? $response : $elevationStr;
     }
-
 }
