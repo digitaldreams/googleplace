@@ -22,7 +22,7 @@ A Nearby Search lets you search for places within a specified area. For example 
             'type' => 'bank'
         ]
     );
-    $rankBy->places(); // it will return \Collection each contains a object of GooglePlace\Service\Place
+    $rankBy->places(); // it will return \Collection each contains a object of GooglePlace\Services\Place
     /* Google Return 60 places divide by 20 each request.
      To get next 20 result you have to call nextPage method.
      */
@@ -41,7 +41,7 @@ Text Search Service is a web service that returns information about a set of pla
 A Place Details request returns more comprehensive information about the indicated place such as its complete address, phone number, user rating and reviews. You need to pass place_id or a reference from a Place Search
 
 ```php
-$place=new \GooglePlace\Service\Place([
+$place=new \GooglePlace\Services\Place([
  'placeid'=>'any place id'
 ]);
 $place->get();
