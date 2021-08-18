@@ -48,10 +48,10 @@ $place->get();
 echo $place->address();
 echo $place->phone();
 print_r($place->photos()); // returns Collection each contains a GooglePlace\Helpers\PlacePhoto object
-print_r($place->reviews()) // return Collection
+print_r($place->reviews()); // return Collection
 print_r($place->timezone(true)); // return  Timezone API response
-print_r($place->distance($place2)) // return Distance Matrix API response
-print_r($place->elevation()) // return Elevation API response
+print_r($place->distance($place2)); // return Distance Matrix API response
+print_r($place->elevation()); // return Elevation API response
 ```
 ### Geocoding
 You can get places by a place name or latitude and longitude.
